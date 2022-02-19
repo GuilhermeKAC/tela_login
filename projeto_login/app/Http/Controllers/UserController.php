@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use App\Models\Usuario;
+use App\Models\Pessoa;
 
 class UserController extends Controller
 {
@@ -25,10 +26,13 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('index', compact('usuario'));
+        $usuario = Usuario::all();
+        $pessoa = Pessoa::all();
+
+        return view('index', compact('usuario', 'pessoa'));
     }
 
-    public function store(Request $request)
+    public function storeUser(Request $request)
     {
 
         $email = $request->email;
@@ -37,6 +41,16 @@ class UserController extends Controller
         $usuario->email = $email;
         $usuario->password = $password;
         $usuario->save();
-        
+    }
+
+    public function storePessoa(Request $request)
+    {
+
+        $nome = $request->nome;
+        $idade = $request->idade;
+        $pessoa = new Pessoa();
+        $pessoa->nome = $nome;
+        $pessoa->idade = $idade;
+        $pessoa->save();
     }
 }

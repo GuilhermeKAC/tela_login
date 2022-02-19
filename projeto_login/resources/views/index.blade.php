@@ -172,7 +172,7 @@
                 </div>
             </div>
             <h2>Usuario</h2>
-            <form method="post" action="index">
+            <form method="post" action="/create/usuario">
                 @csrf
                 <div class="row">
                     <div class="col-md-6 mb-4">
@@ -192,20 +192,22 @@
                 <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Email</th>
+                        <th scope="col">id</th>
+                        <th scope="col">Email</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($usuario as $item)
                     <tr>
-                    <td>1</td>
-                    <td>Guilherme</td>
+                        <td>{{ $item->idUsuario }}</td>
+                        <td>{{ $item->email }}</td>
                     </tr>
+                    @endforeach
                 </tbody>
                 </table>
             </div>
             <h2>Pessoa</h2>
-            <form method="post" action="index">
+            <form method="post" action="/create/pessoa">
                 @csrf
                 <div class="row">
                     <div class="col-md-6 mb-4">
@@ -213,8 +215,8 @@
                         <input type="text" class="form-control" name="nome" id="nome">
                     </div>
                     <div class="col-md-6 mb-4">
-                        <label for="nome">Idade</label>
-                        <input type="text" class="form-control" name="nome" id="nome">
+                        <label for="idade">Idade</label>
+                        <input type="text" class="form-control" name="idade" id="idade">
                     </div>
                     <div class="col-md-12">
                         <button class="btn btn-primary">Adicionar</button>
@@ -225,17 +227,19 @@
                 <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Idade</th>
+                        <th scope="col">id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Idade</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($pessoa as $item)
                     <tr>
-                    <td>1</td>
-                    <td>Ana</td>
-                    <td>26</td>
+                        <td>{{ $item->idPessoa }}</td>
+                        <td>{{ $item->nome }}</td>
+                        <td>{{ $item->idade }}</td>
                     </tr>
+                    @endforeach
                 </tbody>
                 </table>
             </div>
